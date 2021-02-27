@@ -1,0 +1,4 @@
+http://habr.com/ru/post/139673/
+http://more.tv/velikolepnyi_vek/3_sezon/32_seriya
+http://docs.python.org/3/howto/urllib2.html
+http://docs.python.org/3/library/urllib.request.html#module-urllib.request

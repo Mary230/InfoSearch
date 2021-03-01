@@ -1,0 +1,199 @@
+file_1  http://habr.com/ru/post/139673/
+ 
+file_2  http://docs.python.org/3/howto/urllib2.html
+ 
+file_3  http://docs.python.org/3/library/urllib.request.html#module-urllib.request
+ 
+file_4  http://reigameme.ucoz.com/news/
+ 
+file_5  http://osoko.ru
+ 
+file_6  http://mpg-caps.ucoz.ru/dir/
+ 
+file_7  http://bmwos.ru/dir/
+ 
+file_8  http://motocross-gum.at.ua/news/
+ 
+file_9  http://chery-avto.at.ua/news/
+ 
+file_10  http://www.autoorsha.com/publ/
+ 
+file_11  http://video-4x4.ucoz.ru/blog/
+ 
+file_12  http://pro-avto.ucoz.ru/news/
+ 
+file_13  http://avtotrans-m.ru
+ 
+file_14  http://autoreviews.ucoz.ru/news/
+ 
+file_15  http://kickdown.ucoz.com/news/
+ 
+file_16  http://zapravkaavto.ru/publ/
+ 
+file_17  http://progiavto.ucoz.ru
+ 
+file_18  http://autosite.at.ua/news/
+ 
+file_19  http://auto.zhzh.info/news/
+ 
+file_20  http://kiasales.ucoz.ru/news/
+ 
+file_21  http://1audibest.3dn.ru/blog/
+ 
+file_22  http://freesouth.ucoz.ru/news/
+ 
+file_23  http://fuckfueleconomy.su/news/
+ 
+file_24  http://germancars.at.ua/news/
+ 
+file_25  http://avtosait.ucoz.ru/news/
+ 
+file_26  http://nrc.ucoz.ru/news/
+ 
+file_27  http://avto.dzerghinsk.org/news/
+ 
+file_28  http://autosite.at.ua/load/
+ 
+file_29  http://www.automurman.ucoz.ru/news/
+ 
+file_30  http://worldcars.ucoz.com/publ/
+ 
+file_31  http://race174.ucoz.ru/news/
+ 
+file_32  http://www.autoorsha.com/news/
+ 
+file_33  http://carlifeblog.ru
+ 
+file_34  http://scooterclub.kharkov.ua/news/
+ 
+file_35  http://www.vaz04.ru/publ
+ 
+file_36  http://auto-car.ucoz.ru/publ/
+ 
+file_37  http://miravto.my1.ru/load/
+ 
+file_38  http://auto.zhzh.info/dir/
+ 
+file_39  http://www.overroad.ru/publ/
+ 
+file_40  http://streetlegal.ucoz.ru/news/
+ 
+file_41  http://carryway.ru/izhevsk/
+ 
+file_42  http://www.r-motors.net/publ/
+ 
+file_43  http://www.instructorakpp.ru/publ/
+ 
+file_44  http://skuterz.ru/publ/
+ 
+file_45  http://yola-srclub.ucoz.ru/news/
+ 
+file_46  http://auto-life.3dn.ru/news/
+ 
+file_47  http://moskowracing.ucoz.ru/news/
+ 
+file_48  http://auto.zhzh.info/publ/
+ 
+file_49  http://r8d8k.at.ua/news/
+ 
+file_50  http://www.vag-coder.ru/news/
+ 
+file_51  http://jump.ucoz.ru/news/
+ 
+file_52  http://auto-rem0nt.ucoz.ru/news/
+ 
+file_53  http://germancars.at.ua/publ/
+ 
+file_54  http://autonew.ucoz.ru/news/
+ 
+file_55  http://autodating.3dn.ru/news/
+ 
+file_56  http://auto66.clan.su/publ/
+ 
+file_57  http://pdd.ucoz.ua/load/
+ 
+file_58  http://mytuning.ucoz.ru/news/
+ 
+file_59  http://xuliqan.ucoz.ru/news/
+ 
+file_60  http://www.elektrik-avto.ru/publ/
+ 
+file_61  http://disme.ucoz.ru/news/
+ 
+file_62  http://pnevmoressora.at.ua/load/
+ 
+file_63  http://renault-atlas.ru/load/
+ 
+file_64  http://autot.ucoz.ru/blog/
+ 
+file_65  http://ukrautonews.at.ua/news/
+ 
+file_66  http://golden-eagle.ucoz.ru/news/
+ 
+file_67  http://avtoremhelp.ru/news/
+ 
+file_68  http://galvanika.at.ua/publ/
+ 
+file_69  http://auto.takie.org/news/
+ 
+file_70  http://tuner.ucoz.ru/publ/
+ 
+file_71  http://auto-weekend.ucoz.ru
+ 
+file_72  http://usa-export.clan.su/publ/
+ 
+file_73  http://cars-manual.ru
+ 
+file_74  http://autoxaoc.ucoz.ru/load/
+ 
+file_75  http://vsemoto.ucoz.ru/publ/
+ 
+file_76  http://avto-moto-by.ucoz.ru/news/
+ 
+file_77  http://allavto.ucoz.ru/load/
+ 
+file_78  http://strahavaria.ucoz.ru/news/
+ 
+file_79  http://remont-automob.ucoz.ru/news/
+ 
+file_80  http://agent-007.moy.su/blog/
+ 
+file_81  http://roadtests.ru
+ 
+file_82  http://dailyauto.ucoz.ru/news/
+ 
+file_83  http://moto-style.ucoz.ru/news/
+ 
+file_84  http://1audibest.3dn.ru/dir/
+ 
+file_85  http://avtostop.do.am/news/
+ 
+file_86  http://roil.pp.net.ua/load/
+ 
+file_87  http://bespredeldai.at.ua/news/
+ 
+file_88  http://auto-drive.ucoz.ru/news/
+ 
+file_89  http://avtoiron.clan.su/news/
+ 
+file_90  http://automasters.ucoz.ru/news/
+ 
+file_91  http://www.automurman.ucoz.ru/publ/
+ 
+file_92  http://manual-avto.ucoz.ru
+ 
+file_93  http://chibis.clan.su/news/
+ 
+file_94  http://auto.at.ua/publ/
+ 
+file_95  http://vag-com-perm.ru/news/
+ 
+file_96  http://avtonus.at.ua/news/
+ 
+file_97  http://scooterclub.kharkov.ua/publ/
+ 
+file_98  http://avtomekhanick.ucoz.ru/news/
+ 
+file_99  http://auto-knigi.ucoz.ru
+ 
+file_100  http://drom.3dn.ru/publ/ 

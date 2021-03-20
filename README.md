@@ -8,3 +8,7 @@ Repo for hometask
  Файл urls.txt - список ссылок
  В папке htmls лежат готовые файлы
  
+Список слов - файл words.txt
+Список токенов - файл tokkens.txt
+Список лемм - файл lemmas.txt
+

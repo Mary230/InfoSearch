@@ -2,12 +2,12 @@
 import cgi
 
 form = cgi.FieldStorage()
-import sys
 
 import pymorphy2
 
 B_FILE = '/Users/bmacha/PycharmProjects/InfoSearch/bool.txt'
 URLS_FILE = '/Users/bmacha/PycharmProjects/InfoSearch/urls.txt'
+
 
 def f_and(arr):
     the_and = 1
@@ -82,8 +82,9 @@ def get_urls(arr_finds):
             is_find += 1
         num += 1
     # if is_find == 0:
-        # print("Ничего не нашлось")
+    # print("Ничего не нашлось")
     return result_urls
+
 
 def check_uni(arr):
     ind = 1
@@ -98,21 +99,33 @@ def check_uni(arr):
 
 def searching(search_text):
     morph = pymorphy2.MorphAnalyzer()
-    # search_text = input().strip()
+    search_text = search_text.strip()
 
     if len(search_text) < 2:
-        raise IOError("Запрос неверный. Пожалуйста, введите больше двух букв")
+        # raise IOError("Запрос неверный. Пожалуйста, введите больше двух букв")
+        return []
     search_text = search_text.split(" ")
     search_text = [x.lower() for x in search_text]
     search_text = check_uni(check_on_no(search_text))
     if len(search_text) == 1:
-        return get_urls(search_one_word(search_text[0]))
-        sys.exit()
+        if search_text[0][0] == '!':
+            search_text[0] = search_text[0][1:]
+            find_arr = search_one_word(search_text[0])
+            new_find_arr = []
+            for i in find_arr:
+                if int(i) == 0:
+                    new_find_arr.append(1)
+                else:
+                    new_find_arr.append(0)
+            return get_urls(new_find_arr)
+        else:
+            return get_urls(search_one_word(search_text[0]))
     if len(search_text) < 1:
-        raise IOError("Запрос неверный. Пожалуйста, введите хотя бы одно слово для поиска")
-    print("Поисковая строка:", end=' ')
-    [print(x, end=' ') for x in search_text]
-    print()
+        # raise IOError("Запрос неверный. Пожалуйста, введите хотя бы одно слово для поиска")
+        return []
+    # print("Поисковая строка:", end=' ')
+    # [print(x, end=' ') for x in search_text]
+    # print()
     unis = []
     for i in search_text:
         if no_uni(i) == 0:
@@ -141,7 +154,8 @@ def searching(search_text):
             b_file.close()
 
     if len(index_arr) < len(search_text) // 2:
-        raise IOError("Таких слов нет")
+        # raise IOError("Таких слов нет")
+        return []
 
     finish_ind = []
     w_count = range(len(index_arr))
@@ -169,6 +183,7 @@ def searching(search_text):
 
     return get_urls(finish_ind)
 
+
 text1 = form.getfirst("TEXT_1", "не задано")
 urls = searching(text1)
 
@@ -188,7 +203,6 @@ if len(urls) > 0:
 else:
     print("<h1>Ничего не нашлось:(</h1>")
     print("<p><a href = {}> Попробовать снова </a>".format("http://localhost:8000/"))
-
 
 print("""</body>
         </html>""")

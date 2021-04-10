@@ -1,3 +1,5 @@
+import sys
+
 import pymorphy2
 
 morph = pymorphy2.MorphAnalyzer()
@@ -56,6 +58,32 @@ def check_on_no(arr):
     return new_arr
 
 
+def search_one_word(word):
+    finds_arr = []
+    b_f = open(B_FILE)
+    for l in b_f:
+        b_word = l.split("[")[0].strip()
+        if word == b_word:
+            finds_arr = l.split("[")[1].split(",")
+            finds_arr.pop()
+    b_f.close()
+    return finds_arr
+
+
+def get_urls(arr_finds):
+    urls = []
+    with open("urls.txt", "r") as f:
+        urls = f.readlines()
+    num = 0
+    is_find = 0
+    for i in arr_finds:
+        if int(i) == 1:
+            print(urls[num])
+            is_find += 1
+        num += 1
+    if is_find == 0:
+        print("Ничего не нашлось")
+
 def check_uni(arr):
     ind = 1
     new_arr = []
@@ -68,7 +96,10 @@ def check_uni(arr):
 
 
 search_text = check_uni(check_on_no(search_text))
-if len(search_text) < 2:
+if len(search_text) == 1:
+    get_urls(search_one_word(search_text[0]))
+    sys.exit()
+if len(search_text) < 1:
     raise IOError("Запрос неверный. Пожалуйста, введите хотя бы одно слово для поиска")
 print("Поисковая строка:", end=' ')
 [print(x, end=' ') for x in search_text]
@@ -128,16 +159,4 @@ if len(index_arr) > 1:
             c += 1
         finish_ind.append(first)
 
-urls = []
-with open("urls.txt","r") as f:
-    urls = f.readlines()
-num = 0
-is_find = 0
-
-for i in finish_ind:
-    if i == 1:
-        print(urls[num])
-        is_find = 3
-    num += 1
-if is_find == 0:
-    print("Ничего не нашлось")
+get_urls(finish_ind)

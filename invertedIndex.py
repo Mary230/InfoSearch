@@ -1,10 +1,13 @@
 import re
+
+from bs4 import BeautifulSoup
+
 TOKKENS_FILE_NAME = 'lemmas.txt'
 HTML_FILE_PATH = 'htmls/file_'
 HTML_FILE_COUNT = 100
 INDEX_FILE = 'inverted_index.txt'
 B_FILE = 'bool.txt'
-tok_f = open(TOKKENS_FILE_NAME)
+tok_f = open(TOKKENS_FILE_NAME, 'r')
 index_file = open(INDEX_FILE, 'w')
 b_file = open(B_FILE, 'w')
 
@@ -12,7 +15,7 @@ def lems_to_normalform(lemmas):
     new_tokkens = []
     tokens = lemmas.read().replace("<", " ").replace(">", " ").replace("\n", ";;").split(";;")
     for i in tokens:
-        i = i.split(" ")
+        i = i.split()
         for ii in i:
             if len(ii) < 2:
                 i.remove(ii)
@@ -29,10 +32,11 @@ for lems in tokens :
     if len(lems)>0 :
         index_file.write(lems[0] + '[')
         b_file.write(lems[0] + '[')
-        while num <= HTML_FILE_COUNT :
+        while num <= HTML_FILE_COUNT:
             find = 0
             f = open(HTML_FILE_PATH + str(num) + '.txt')
             html_doc = f.read()
+            html_doc = html_doc.lower()
             for word in lems:
                 find = find + len(re.findall(word, html_doc))
             if find > 0:
@@ -48,7 +52,9 @@ for lems in tokens :
         index_file.write(']\n')
         num = 1
 
-
+tok_f.close()
+index_file.close()
+b_file.close()
 
 
 

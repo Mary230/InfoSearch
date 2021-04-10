@@ -1,0 +1,21 @@
+#search_text {
+    display: flex;
+    width: 60%;
+    height: 28px;
+    left: 162px;
+    top: 209px;
+}
+#search_button {
+    display: flex;
+    margin-left: 3vw;
+    height:34px;
+    min-width: 5%;
+    text-align: center;
+}
+form {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}

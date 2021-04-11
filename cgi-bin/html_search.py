@@ -3,10 +3,11 @@ import cgi
 
 form = cgi.FieldStorage()
 
-import pymorphy2
-
 B_FILE = '/Users/bmacha/PycharmProjects/InfoSearch/bool.txt'
 URLS_FILE = '/Users/bmacha/PycharmProjects/InfoSearch/urls.txt'
+TF_FILE = '/Users/bmacha/PycharmProjects/InfoSearch/tf.txt'
+IDF_FILE = '/Users/bmacha/PycharmProjects/InfoSearch/idf.txt'
+INVERTED_INDEX_W_COUNT = 17326
 
 
 def f_and(arr):
@@ -69,7 +70,7 @@ def search_one_word(word):
 
 
 def get_urls(arr_finds):
-    urls = []
+    urls_nums = []
     result_urls = []
     with open(URLS_FILE, "r") as f:
         urls = f.readlines()
@@ -77,13 +78,11 @@ def get_urls(arr_finds):
     is_find = 0
     for i in arr_finds:
         if int(i) == 1:
-            # print(urls[num])
+            urls_nums.append(num + 1)
             result_urls.append(urls[num])
             is_find += 1
         num += 1
-    # if is_find == 0:
-    # print("Ничего не нашлось")
-    return result_urls
+    return [result_urls, urls_nums]
 
 
 def check_uni(arr):
@@ -97,12 +96,46 @@ def check_uni(arr):
     return new_arr
 
 
-def searching(search_text):
-    morph = pymorphy2.MorphAnalyzer()
-    search_text = search_text.strip()
+def tf_idf(words, urls_num, r_url):
+    result_urls = []
+    urls_dict = dict.fromkeys(urls_num, 0)
+    dict_urls_num = dict(zip(urls_num, r_url))
+    l = 1
+    print(dict_urls_num)
+    print(urls_dict)
+    with open(TF_FILE, 'r') as tf_file:
+        with open(IDF_FILE, 'r') as idf_file:
+            while l < INVERTED_INDEX_W_COUNT:
+                tf_line = tf_file.readline()
+                idf_line = idf_file.readline()
+                tf_word = tf_line.split('[')[0]
+                tf = tf_line.split('[')[1].split(';')
+                tf.pop()
+                idf = int(idf_line.split('[')[1].strip()[0:-1])
+                tfs = {}
+                for t1 in tf:
+                    tfs[int(t1.split(':')[0])] = int(t1.split(':')[1])
+                for w in words:
+                    if w == tf_word:
+                        for n in urls_num:
+                            w_tf = tfs.get(n, 1)
+                            w_tf_idf = w_tf * idf
+                            urls_dict[n] = urls_dict.get(n) + w_tf_idf
+                l += 1
+    list_d = list(urls_dict.items())
+    list_d.sort(key=lambda i: i[1], reverse=True)
+    for i in list_d:
+        result_urls.append(dict_urls_num[int(i[0])])
+    tf_file.close()
+    idf_file.close()
+    print(list_d)
+    print(result_urls)
+    return result_urls
 
+
+def searching(search_text):
+    search_text = search_text.strip()
     if len(search_text) < 2:
-        # raise IOError("Запрос неверный. Пожалуйста, введите больше двух букв")
         return []
     search_text = search_text.split(" ")
     search_text = [x.lower() for x in search_text]
@@ -117,23 +150,26 @@ def searching(search_text):
                     new_find_arr.append(1)
                 else:
                     new_find_arr.append(0)
-            return get_urls(new_find_arr)
+            get_urls_result = get_urls(new_find_arr)
+            get_urls_result_urls = get_urls_result[0]
+            get_urls_result_num = get_urls_result[1]
+            return tf_idf([search_text[0]], get_urls_result_num, get_urls_result_urls)
         else:
-            return get_urls(search_one_word(search_text[0]))
+            get_urls_result = get_urls(search_one_word(search_text[0]))
+            get_urls_result_urls = get_urls_result[0]
+            get_urls_result_num = get_urls_result[1]
+            return tf_idf([search_text[0]], get_urls_result_num, get_urls_result_urls)
     if len(search_text) < 1:
-        # raise IOError("Запрос неверный. Пожалуйста, введите хотя бы одно слово для поиска")
         return []
-    # print("Поисковая строка:", end=' ')
-    # [print(x, end=' ') for x in search_text]
-    # print()
     unis = []
     for i in search_text:
         if no_uni(i) == 0:
             unis.append(i)
     #         в отдельный лист вынесла все союзы
-
     index_arr = []
     no = 0
+    result_words = []
+    # слова для дальнейшей сотрировки
     for i in search_text:
         if no_uni(i):
             b_file = open(B_FILE)
@@ -142,6 +178,7 @@ def searching(search_text):
                 if i[0] == "!":
                     no = 1
                     i = i[1:]
+
                 if i == b_str:
                     index = line.split("[")[1].split(",")
                     index.pop()
@@ -150,11 +187,9 @@ def searching(search_text):
                         no = 0
                     else:
                         index_arr.append(index)
-
+            result_words.append(i)
             b_file.close()
-
     if len(index_arr) < len(search_text) // 2:
-        # raise IOError("Таких слов нет")
         return []
 
     finish_ind = []
@@ -180,11 +215,14 @@ def searching(search_text):
                     first = first | int(i[c])
                 c += 1
             finish_ind.append(first)
+    get_urls_result = get_urls(finish_ind)
+    get_urls_result_urls = get_urls_result[0]
+    get_urls_result_num = get_urls_result[1]
+    return tf_idf(result_words, get_urls_result_num, get_urls_result_urls)
 
-    return get_urls(finish_ind)
 
-
-text1 = form.getfirst("TEXT_1", "не задано")
+# text1 = form.getfirst("TEXT_1", "не задано")
+text1 = 'семейства'
 urls = searching(text1)
 
 print("Content-type: text/html\n")

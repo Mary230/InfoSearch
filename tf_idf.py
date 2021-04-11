@@ -91,11 +91,11 @@ with open(INVERTED_INDEX_FILE, 'r') as inverted_index_file:
                 tf = math.ceil((w_count / f_w_count) * TF_FACTOR)
             else:
                 tf = 0
-            # tfs.append(tf)
-            # tf_file_string = tf_file_string + str(f_num + 1) + ':' + str(tf) + ';'
+            tfs.append(tf)
+            tf_file_string = tf_file_string + str(f_num + 1) + ':' + str(tf) + ';'
         tf_file_string = tf_file_string + ']\n'
         if file_count == 0:
-            file_count = 0.01
+            file_count = 1
         idf = math.log10(HTML_FILE_COUNT / file_count)
         # for i in tfs:
         #     tf_idf_file_string = tf_idf_file_string + str(f_num) + ':' + str(int(tf)*idf) + ';'
